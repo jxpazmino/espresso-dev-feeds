@@ -1,0 +1,27 @@
+{
+  "name": "project",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD",
+  "devDependencies": {
+    "gulp": "~3.9.1",
+    "gulp-sass": "~2.2.0",
+    "uglify": "~0.1.5",
+    "gulp-if": "~2.0.0",
+    "gulp-minify-html": "~1.0.6",
+    "browserify": "~13.0.0",
+    "gulp-autoprefixer": "~3.1.0",
+    "browser-sync": "~2.11.1",
+    "express": "~4.13.4",
+    "firebase": "~2.4.1",
+    "request": "~2.69.0",
+    "cheerio": "~0.20.0",
+    "jquery": "~2.2.1",
+    "gulp-concat": "~2.6.0"
+  }
+}
