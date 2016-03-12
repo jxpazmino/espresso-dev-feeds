@@ -10,12 +10,11 @@ var gulp 		 = require('gulp'),
     buffer       = require('vinyl-buffer'),
 	htmlmin      = require('gulp-htmlmin'),
 	autoprefixer = require('gulp-autoprefixer'),
-    handlebars   = require('gulp-handlebars'),
 	browserSync  = require('browser-sync').create(),
     sassStyle,
     env,
     outputDir;
-/*
+
 // env = process.env.NODE_ENV || 'development';
 env = 'development';
 
@@ -69,7 +68,7 @@ gulp.task('js', function() {
 //browserSync sass watch
 gulp.task('sass-watch', ['sass'], browserSync.reload);
 gulp.task('js-watch', ['js'], browserSync.reload);
-*/
+
 // monitor changes, Ctrl + C to stop watch task
 gulp.task('serve', ['sass'], function() {
     console.log(gulp);
@@ -89,45 +88,4 @@ gulp.task('serve', ['sass'], function() {
 	// gulp.watch('builds/development/images/**/*.*', ['images']);
 });
 
-// gulp.task('default', ['js', 'sass', 'html']);
-
-////////////////////////////////////////////////////////
-
-
-var wrap = require('gulp-wrap');
-var declare = require('gulp-declare');
-
-gulp.task('default', ['templates','scripts'], function () {
-    console.log('running gulp');
-});
-
-
-gulp.task('templates', function () {
-    return gulp.src('templates/*.hbs')
-      .pipe(handlebars())
-      .pipe(wrap('Handlebars.template(<%= contents %>)'))
-      .pipe(declare({
-          namespace: 'MyApp.templates',
-          noRedeclare: true, // Avoid duplicate declarations
-      }))
-      .pipe(concat('templates.js'))
-      .pipe(gulp.dest('builds/development/js'));
-});
-
-gulp.task('scripts', ['templates'], function () {
-    return gulp.src(['js/lib/handlebars/handlebars.runtime.js', 'js/dist/templates.js', 'js/app/**/*.js'])
-      .pipe(concat('bundle.js'))
-      .pipe(uglify())
-      .pipe(gulp.dest('js/dist/'));
-});
-
-
-
-
-
-return browserify(jsSources)
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
-	.pipe(gulpif(env === 'production', uglify()))
-    .pipe(gulp.dest(outputDir + 'js'));
+gulp.task('default', ['js', 'sass', 'html']);
