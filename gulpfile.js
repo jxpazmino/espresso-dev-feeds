@@ -15,6 +15,8 @@ var gulp 		 = require('gulp'),
     sassStyle,
     env,
     outputDir;
+    
+    
 /*
 // env = process.env.NODE_ENV || 'development';
 env = 'development';
@@ -105,29 +107,30 @@ gulp.task('default', ['templates','scripts'], function () {
 gulp.task('templates', function () {
     return gulp.src('templates/*.hbs')
       .pipe(handlebars())
-      .pipe(wrap('Handlebars.template(<%= contents %>)'))
-      .pipe(declare({
-          namespace: 'MyApp.templates',
-          noRedeclare: true, // Avoid duplicate declarations
-      }))
+    //   .pipe(wrap('Handlebars.template(<%= contents %>)'))
+    //   .pipe(declare({
+    //       namespace: 'MyApp.templates',
+    //       noRedeclare: true, // Avoid duplicate declarations
+    //   }))
       .pipe(concat('templates.js'))
-      .pipe(gulp.dest('builds/development/js'));
+      .pipe(wrap('var Handlebars = require("handlebars");\n <%= contents %>'))
+      .pipe(gulp.dest('components/compiled/js'));
 });
 
 gulp.task('scripts', ['templates'], function () {
-    return gulp.src(['js/lib/handlebars/handlebars.runtime.js', 'js/dist/templates.js', 'js/app/**/*.js'])
+    return gulp.src(['components/compiled/js/templates.js', 'components/scripts/app.js'])
       .pipe(concat('bundle.js'))
       .pipe(uglify())
-      .pipe(gulp.dest('js/dist/'));
+      .pipe(gulp.dest('builds/development/js/'));
 });
 
 
 
 
 
-return browserify(jsSources)
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
-	.pipe(gulpif(env === 'production', uglify()))
-    .pipe(gulp.dest(outputDir + 'js'));
+// return browserify(jsSources)
+//     .bundle()
+//     .pipe(source('bundle.js'))
+//     .pipe(buffer())
+// 	.pipe(gulpif(env === 'production', uglify()))
+//     .pipe(gulp.dest(outputDir + 'js'));
