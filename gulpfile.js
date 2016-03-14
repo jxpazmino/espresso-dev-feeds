@@ -41,23 +41,24 @@ gulp.task('handlebars', function() {
 });
 
 
-gulp.task('js', function() {
-    return gulp.src(jsSources)
-	.pipe(concat('bundle.js'))
-	// .pipe(uglify())
-	.pipe(gulpif(env === 'production', uglify()))
-	.pipe(gulp.dest(outputDir + 'js'));
-});
-
-
 // gulp.task('js', function() {
-//     return browserify(jsSources)
-//     .bundle()
-//     .pipe(source('bundle.js'))
-//     .pipe(buffer())
+//     return gulp.src(jsSources)
+// 	.pipe(concat('bundle.js'))
+// 	// .pipe(uglify())
 // 	.pipe(gulpif(env === 'production', uglify()))
-//     .pipe(gulp.dest(outputDir + 'js'));
+// 	.pipe(gulp.dest(outputDir + 'js'));
 // });
+
+
+gulp.task('js', function() {
+    return browserify(jsSources)
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(buffer())
+	// .pipe(gulpif(env === 'production', uglify()))
+	.pipe(uglify())
+    .pipe(gulp.dest(outputDir + 'js'));
+});
 
 gulp.task('default', ['js']);
     

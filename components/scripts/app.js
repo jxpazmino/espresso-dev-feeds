@@ -1,23 +1,12 @@
-(function() {
-    var url_scrape = 'https://scrap-dev-news.firebaseio.com/sites.json';
-    var request;
-    var items;
+var $ = require('jquery');
+var url_scraper = 'https://scrap-dev-news.firebaseio.com/sites.json',
+    url_reddit_webdev = 'https://www.reddit.com/r/webdev.json',
+    url_reddit_firebase = 'https://www.reddit.com/r/firebase.json';
 
-    if (window.XMLHttpRequest) {
-        request = new XMLHttpRequest();
-    } else {
-        request = new ActiveXObject("Microsoft.XMLHTTP");
-    }
+var scraper = $.getJSON(url_scraper);
+var reddit_webdev =$.getJSON(url_reddit_webdev);
 
-    request.open('GET', url_scrape, true);
-    request.onreadystatechange = function() {
-        if((request.readyState===4) && (request.status===200)) {
-            items = JSON.parse(request.responseText);
-        }
-    }
-    request.send();
-    
-    
-    console.log("items", items);
-    
-})();
+$.when(scraper, reddit_webdev).done(function(scraper,reddit_webdev) {
+    console.log(scraper[0]);
+    console.log(reddit_webdev[0].data.children);
+});
