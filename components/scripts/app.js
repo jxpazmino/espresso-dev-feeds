@@ -1,18 +1,23 @@
-"use strict";
-var $ = require('jquery');
-var Handlebars = require('handlebars');
-var templates = require('templates');
-var data = { title: 'This Form', name: 'Joey' };
-var output = templates.feeds;
-var html = templates.feeds(data);
-// console.log(html);
+(function() {
+    var url_scrape = 'https://scrap-dev-news.firebaseio.com/sites.json';
+    var request;
+    var items;
 
-$(document).ready(function () {
-    $('#content').html(html);
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+    } else {
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    request.open('GET', url_scrape, true);
+    request.onreadystatechange = function() {
+        if((request.readyState===4) && (request.status===200)) {
+            items = JSON.parse(request.responseText);
+        }
+    }
+    request.send();
     
-    // var content = document.getElementById('content');
-    // content.innerHTML = output;
-});
-
-// var content = document.getElementById('content');
-// content.innerHTML = template(data);
+    
+    console.log("items", items);
+    
+})();
