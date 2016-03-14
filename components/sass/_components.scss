@@ -1,0 +1,123 @@
+%btn {
+  border: none;
+  border-radius: 2px;
+  display: inline-block;
+  height: 30px;
+  line-height: 1.4;
+  // margin-bottom: 15px;
+  outline: 0;
+  padding: 0 2rem;
+  text-transform: uppercase;
+  vertical-align: middle;
+  // Gets rid of tap active state
+  -webkit-tap-highlight-color: transparent;
+  color: blue;
+}
+
+//short shadow
+%box-shadow-1 {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+//larger shadow
+%box-shadow-2 {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+%truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+header {
+    background-color: $color-header;
+    color: $white;
+    height: $header-height;
+    line-height: $header-height;
+    @extend %box-shadow-1;
+    
+    button {
+        float: right;
+        @extend %btn;
+    }
+}
+
+article {
+    width: 100%;
+    margin-top: 25px;
+    
+    @include mobile {
+        min-height: $logo-size-small;
+    }
+    @include tablet {
+        min-height: $logo-size-big;
+    }
+    
+    @extend %box-shadow-1;
+    svg {
+        height: auto;
+        margin-right: 15px;
+        float: left;
+        // @include mobile {
+        //     width: $logo-size-small;
+        //     // @include clearfix;
+        // }
+        // @include tablet {
+        //     width: $logo-size-big;
+        //     // float: left;
+        // }
+    }
+    a {
+        text-decoration: none;
+        color: $color-headlines;
+        display: block;
+        width: calc(100% - 10px);
+        @include mobile {
+            paddint-top: 10px;
+            font-size: 1.3rem;
+            @include clearfix;
+        }
+        @include tablet {
+            padding-top: 13px;
+            font-size: 1.5rem;
+        }
+        @include desktop {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 80%;
+        }
+    }
+    span {
+        color: $color-time;
+        font-size: 1rem;
+        float: right;
+        
+        @include mobile  {
+            margin-top: 10px;
+        }
+        @include tablet  {
+            margin-top: 10px;
+        }
+        @include desktop {
+            
+            line-height: $logo-size-big;
+            margin-right:20px;
+        }
+        @include clearfix;
+    }
+    &:last-child {
+        margin-bottom: 25px;
+    }
+    
+}
+
+.logo {
+    color: $color-logo;
+    font-size: 1.83rem;
+    margin: 0 20px;
+    i {
+        color: $color-dot;
+    }
+}

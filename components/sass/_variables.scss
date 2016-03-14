@@ -1,0 +1,42 @@
+@import url(https://fonts.googleapis.com/css?family=Inconsolata);
+
+$black:     #000;
+$white:     #fff;
+// $blue:      #11d;
+// $darkgray:  #212121;
+// $off-black:  lighten($black, 10%);
+// $off-white:  darken($white, 5%);
+
+// monokai
+$dark: #272822;
+$darker:      #171714;
+$off-white: #F8F8F2;
+$yellow: #E6DB74;
+$light-blue: #66D9EF;
+$pink: #f92672;
+$purple: #AE81FF;
+$green: #A6E22E;
+$orange: #FD971F;
+$grey: #75715E;
+$red: #F92672;
+
+$color-background: $dark;
+$color-header: $darker;
+$color-main: $off-white;
+$color-headlines: $off-white;
+$color-time: $yellow;
+$color-logo: $light-blue;
+$color-dot: $pink;
+// $color-main: $darkgray;
+// $color-headlines: $blue;
+
+$font-main: "Inconsolata", Helvetica, sans-serif;
+
+$screen-small:      0px;
+$screen-medium:     760px;
+$screen-large:      1200px;
+
+$logo-size-big: 54px;
+$logo-size-small: 48px;
+
+$header-height: 50px;

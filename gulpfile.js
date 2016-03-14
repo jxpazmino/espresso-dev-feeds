@@ -3,7 +3,6 @@
 var gulp 		 = require('gulp'),
     handlebars   = require('gulp-compile-handlebars'),
     rename       = require('gulp-rename'),
-    // speakers     = require('./components/json/feed.json'),
 	uglify 		 = require('gulp-uglify'),
 	gulpif 		 = require('gulp-if'),
     concat       = require('gulp-concat'),
@@ -11,9 +10,9 @@ var gulp 		 = require('gulp'),
     source       = require('vinyl-source-stream'),
     buffer       = require('vinyl-buffer'),
 	htmlmin      = require('gulp-htmlmin'),
-	// sass		 = require('gulp-sass'),
+	sass		 = require('gulp-sass'),
 	// autoprefixer = require('gulp-autoprefixer'),
-	browserSync  = require('browser-sync').create(),
+	// browserSync  = require('browser-sync').create(),
     sassStyle,
     env,
     outputDir;
@@ -31,14 +30,15 @@ if(env==='development') {
 	sassStyle = 'compressed';
 }
     
-var jsSources = ['components/scripts/app.js'];    
+var jsSources = ['components/scripts/app.js'],          sassSources = ['components/sass/style.scss'];
     
-gulp.task('handlebars', function() {
-    gulp.src('templates/*.hbs')
-        .pipe(handlebars(data))
-        .pipe(rename('index.html'))
-        .pipe(gulp.dest('builds/development/'));
-});
+// this works!
+// gulp.task('handlebars', function() {
+//     gulp.src('templates/*.hbs')
+//         .pipe(handlebars(data))
+//         .pipe(rename('index.html'))
+//         .pipe(gulp.dest('builds/development/'));
+// });
 
 
 // gulp.task('js', function() {
@@ -60,12 +60,22 @@ gulp.task('js', function() {
     .pipe(gulp.dest(outputDir + 'js'));
 });
 
-gulp.task('default', ['js']);
+gulp.task('sass', function() {
+	return gulp.src(sassSources)
+	.pipe(sass({
+		outputStyle: sassStyle
+	}))
+    // .pipe(autoprefixer('last 2 versions'))
+	.pipe(gulp.dest(outputDir + 'css'));
+    // .pipe(browserSync.stream());
+});
+
+gulp.task('default', ['sass']);
     
     
 /*
 
-var sassSources = ['components/sass/style.scss'];
+
 var htmlSources = [outputDir + '*.html'];
 
 
@@ -78,15 +88,7 @@ gulp.task('autoprefix', function() {
     .pipe(gulp.dest(outputDir + 'css'));
 });
 
-gulp.task('sass', function() {
-	return gulp.src(sassSources)
-	.pipe(sass({
-		outputStyle: sassStyle
-	}))
-    // .pipe(autoprefixer('last 2 versions'))
-	.pipe(gulp.dest(outputDir + 'css'));
-    // .pipe(browserSync.stream());
-});
+
 
 gulp.task('html', function() {
 	return gulp.src('builds/development/*.html') //always read index @dev

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -9,6 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <svg style="display:none">
         <symbol id="sym-s">
@@ -25,22 +27,36 @@
             </g>
         </symbol>
     </svg>
-    
+
     <header>
-        <span>console.log</span>
-        <img src="menu" alt="menu">
+        <span class="logo">feed<i>.</i>log</span>
+        <button>Menu</button>
     </header>
-    
+
     <section>
         <div class="container">
             <article>
-                <img src="http://placehold.it/54x54" alt="logo">
-                <a href="#">Article Title</a>
+                <svg class="sym-s left" width="54" height="54" viewbox="0 0 200 200">
+                    <use xlink:href="#sym-s"></use>
+                </svg>
+                <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius sint.
+                    , cons asddsectetur adipisicing elit. Eius sint.
+                </a>
+                <span>2 days ago</span>
+            </article>
+            <article>
+                <svg class="sym-s left" width="54" height="54" viewbox="0 0 200 200">
+                    <use xlink:href="#sym-s"></use>
+                </svg>
+                <a href="#">Lorem ipsum dolor sis sd sdt a s met, adipis icing elit. Laborum, repellat sdfsdfasd sdfsdfVeritatis!</a>
                 <span>2 days ago</span>
             </article>
         </div>
     </section>
-    
+
+
+
     <script src="js/bundle.js"></script>
 </body>
+
 </html>
