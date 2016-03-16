@@ -14,7 +14,7 @@ rootRef.child("settings").on("value", function(snapshot) {
 
 
 var fetchArticles = rootRef.child("articles").orderByChild("millisInverse").on("child_added", function(snapshot) {
-    console.log(snapshot.val().date + " : " + snapshot.val().title + " : " + snapshot.val().site + " @ " + snapshot.val().url);
+    // console.log(snapshot.val().date + " : " + snapshot.val().title + " : " + snapshot.val().site + " @ " + snapshot.val().url);
     var data = snapshot.val();
     
     
@@ -23,56 +23,55 @@ var fetchArticles = rootRef.child("articles").orderByChild("millisInverse").on("
     var svgAttrs = {
         width: "54",
         height: "54",
-        viewbox: "0 0 200 200"
+        version: "1.1",
+        viewbox: "0 0 200 200",
     };
     
-    var svg = document.createElement("svg");
-    svg.className = "left";
-    svg.innerText = "hello";
-    svg.innerHTML = '<use xlink:href="#sym-s"></use>';
-    svg.setAttribute("width", 54);
-    svg.setAttribute("height", 54);
-    svg.setAttribute("viewbox", "0 0 200 200");
-    // for(var key in svgAttrs) {
-    //     svg.setAttribute(key, svgAttrs[key]);
-    // }
-    // var use = document.createElement("use");
-    // use.setAttribute("xlink:href", "#sym-s");
-    // svg.appendChild(use);
+    // var svg = document.createElement("svg");
+//    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+//     svg.className = "left";
+//     svg.innerHTML = '<use xlink:href="#sym-sv"></use>';
+//     svg.setAttribute("fill", "red");
+//     // var use = document.createElement("use");
+//     // use.setAttribute("xlink:href", "#sym-s");
+//     // svg.appendChild(use);
+//     for(var key in svgAttrs) {
+//         svg.setAttribute(key, svgAttrs[key]);
+//     }
     
     var title = document.createElement("a");
     title.className = "title";
-    title.innerHTML = data.title;
+    title.innerText = data.title;
     title.setAttribute("href", data.url);
     title.setAttribute("target", "_blank");
     
-    var time = document.createElement("time");
-    var formattedDate = data.date.replace(/\//g,"-");
-    time.innerHTML = formattedDate;
-    time.setAttribute("datetime", formattedDate);
+    // var time = document.createElement("time");
+    // var formattedDate = data.date.replace(/\//g,"-");
+    // time.innerHTML = formattedDate;
+    // time.setAttribute("datetime", formattedDate);
     
-    article.appendChild(svg);
+    // article.appendChild(svg);
     article.appendChild(title);
-    article.appendChild(time);
+    // article.appendChild(time);
     
-    var numComments = data.commentcount;
-    if(numComments !== void 1) {
-        var comments = document.createElement("a");
-        if(numComments===1) {
-            comments.innerHTML = numComments + " comment";
-        } else {
-            comments.innerHTML = numComments + " comments";
-        }
-        comments.className = "comments";
-        comments.setAttribute("href", data.commenturl);
-        comments.setAttribute("target", "_blank");
-        article.appendChild(comments);
-    } else {
-        var nocomments = document.createElement("span");
-        nocomments.className = "comments";
-        nocomments.innerHTML = "&nbsp;"; //keep block formatting
-        article.appendChild(nocomments);
-    }
+    // var numComments = data.commentcount;
+    // if(numComments !== void 1) {
+    //     var comments = document.createElement("a");
+    //     if(numComments===1) {
+    //         comments.innerHTML = numComments + " comment";
+    //     } else {
+    //         comments.innerHTML = numComments + " comments";
+    //     }
+    //     comments.className = "comments";
+    //     comments.setAttribute("href", data.commenturl);
+    //     comments.setAttribute("target", "_blank");
+    //     article.appendChild(comments);
+    // } else {
+    //     var nocomments = document.createElement("span");
+    //     nocomments.className = "comments";
+    //     nocomments.innerHTML = "&nbsp;"; //keep block formatting
+    //     article.appendChild(nocomments);
+    // }
     
     var container = document.getElementById("content");
     content.appendChild(article);
@@ -80,6 +79,7 @@ var fetchArticles = rootRef.child("articles").orderByChild("millisInverse").on("
 });
 
 // rootRef.off("child_added");
+
 },{"firebase":2}],2:[function(require,module,exports){
 /*! @license Firebase v2.4.1
     License: https://www.firebase.com/terms/terms-of-service.html */
