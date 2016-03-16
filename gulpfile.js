@@ -17,7 +17,7 @@ var gulp 		 = require('gulp'),
     env,
     outputDir;
     
-var data = require('./components/json/feed.json');
+// var data = require('./components/json/feed.json');
     
 // env = process.env.NODE_ENV || 'development';
 env = 'development';
@@ -56,7 +56,7 @@ gulp.task('js', function() {
     .pipe(source('bundle.js'))
     .pipe(buffer())
 	// .pipe(gulpif(env === 'production', uglify()))
-	.pipe(uglify())
+	// .pipe(uglify())
     .pipe(gulp.dest(outputDir + 'js'));
 });
 
@@ -70,7 +70,7 @@ gulp.task('sass', function() {
     // .pipe(browserSync.stream());
 });
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['js', 'sass']);
     
     
 /*

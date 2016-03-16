@@ -14,6 +14,12 @@
   color: blue;
 }
 
+%update-text {
+    font-style: italic;
+    color: $color-time;
+    white-space: nowrap;
+}
+
 //short shadow
 %box-shadow-1 {
     box-shadow: 0 1px 3px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.24);
@@ -32,7 +38,7 @@
 
 header {
     background-color: $color-header;
-    color: $white;
+    color: $off-white;
     height: $header-height;
     line-height: $header-height;
     @extend %box-shadow-1;
@@ -41,11 +47,41 @@ header {
         float: right;
         @extend %btn;
     }
+    
+    #slash {
+       @extend %update-text; 
+    }
+    
+    #lastupdate {
+        @extend %update-text;
+        @include mobile {
+            display: none;
+        }
+        @include tablet {
+            display: inline-block;
+        }
+    }
+    
+    #updatetime {
+        @extend %update-text;
+        overflow: hidden;
+    }
+    
+    .logo {
+        color: $color-logo;
+        font-size: 1.84rem;
+        margin: 0 20px;
+        line-height: $header-height;
+        em {
+            color: $color-dot;
+        }
+    }
 }
 
 article {
     width: 100%;
     margin-top: 25px;
+    position: relative;
     
     @include mobile {
         min-height: $logo-size-small;
@@ -57,67 +93,96 @@ article {
     @extend %box-shadow-1;
     svg {
         height: auto;
-        margin-right: 15px;
-        float: left;
-        // @include mobile {
-        //     width: $logo-size-small;
-        //     // @include clearfix;
-        // }
-        // @include tablet {
-        //     width: $logo-size-big;
-        //     // float: left;
-        // }
-    }
-    a {
-        text-decoration: none;
-        color: $color-headlines;
-        display: block;
-        width: calc(100% - 10px);
+        display: inline-block;
+        position: absolute;
+        top: 0;
         @include mobile {
-            paddint-top: 10px;
-            font-size: 1.3rem;
-            @include clearfix;
+            width: $logo-size-small;
         }
         @include tablet {
-            padding-top: 13px;
-            font-size: 1.5rem;
+            width: $logo-size-big;
         }
-        @include desktop {
+    }
+    .title {
+        text-decoration: none;
+        color: $color-headlines;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: $logo-size-big;
+        font-weight: normal;
+        
+        @include mobile {
+            font-size: 16px;
+            font-size: 1.1rem;
+            paddint-top: 10px;
+            margin-top: 5px;
+            margin-bottom: 1px;
+            max-width: calc(100% - 100px);
+            padding-left: 4px;
+        }
+        @include tablet {
+            font-size: 19px;
+            font-size: 1.5rem;
             white-space: nowrap;
+            margin-top: 8px;
+            margin-bottom: 10px;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 80%;
+            max-width: calc(100% - 320px);
+            padding-left: 16px;
         }
     }
-    span {
+    
+    time {
         color: $color-time;
-        font-size: 1rem;
-        float: right;
+        white-space: nowrap;
+        display: inline-block;
         
+        @include mobile {
+            font-size: 14px;
+            font-size: 0.9rem;
+            vertical-align: bottom;
+            margin: 5px 58px -16px;
+        }
+        @include tablet {
+            font-size: 13px;
+            font-size: 0.85rem;
+            vertical-align: middle;
+            margin: 8px 10px 2px;   
+        }
+    }
+    
+    .comments {
+        text-decoration: none;
+        color: $color-comments;
+        vertical-align: middle;
+        padding-bottom: 10px;
+        text-align: right;
+        
+        @include clearfix;
+        @include overfix;
         @include mobile  {
-            margin-top: 10px;
+            font-size: 14px;
+            font-size: 0.9rem;
+            display: block;
+            width: 100%;
+            margin-left: -20px;
+            margin-top: -5px;
         }
         @include tablet  {
-            margin-top: 10px;
-        }
-        @include desktop {
-            
+            font-size: 15px;
+            font-size: 1rem;
+            width: 120px;
+            margin-right: 20px;
+            float: right;
             line-height: $logo-size-big;
-            margin-right:20px;
+            margin-top: 2px;
         }
-        @include clearfix;
     }
+    
     &:last-child {
         margin-bottom: 25px;
     }
     
 }
 
-.logo {
-    color: $color-logo;
-    font-size: 1.83rem;
-    margin: 0 20px;
-    i {
-        color: $color-dot;
-    }
-}
