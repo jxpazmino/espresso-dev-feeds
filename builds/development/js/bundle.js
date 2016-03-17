@@ -3,7 +3,7 @@ var Firebase = require('firebase');
 
 var rootRef = new Firebase('https://scrap-dev-news.firebaseio.com/');
 
-rootRef.child("settings").on("value", function(snapshot) {
+rootRef.child("settings").once("value", function(snapshot) {
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var date = new Date(snapshot.val().lastupdate);
     var formattedDate = date.toDateString();
@@ -13,45 +13,26 @@ rootRef.child("settings").on("value", function(snapshot) {
 });
 
 
-var fetchArticles = rootRef.child("articles").orderByChild("millisInverse").on("child_added", function(snapshot) {
-    // console.log(snapshot.val().date + " : " + snapshot.val().title + " : " + snapshot.val().site + " @ " + snapshot.val().url);
+var fetchArticles = rootRef.child("articles").once("value").then(function(snapshot) {
     var data = snapshot.val();
+    console.log(data);
+    // var siteTag = snapshot.key().slice(11,13);
     
+    // var article = document.createElement("article");
+    // article.innerHTML = '<svg class="left" width="54" height="54" viewbox="0 0 200 200"><use xlink:href="#sym-' + siteTag + '"></use></svg>';
     
-    var article = document.createElement("article");
-    
-    var svgAttrs = {
-        width: "54",
-        height: "54",
-        version: "1.1",
-        viewbox: "0 0 200 200",
-    };
-    
-    // var svg = document.createElement("svg");
-//    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-//     svg.className = "left";
-//     svg.innerHTML = '<use xlink:href="#sym-sv"></use>';
-//     svg.setAttribute("fill", "red");
-//     // var use = document.createElement("use");
-//     // use.setAttribute("xlink:href", "#sym-s");
-//     // svg.appendChild(use);
-//     for(var key in svgAttrs) {
-//         svg.setAttribute(key, svgAttrs[key]);
-//     }
-    
-    var title = document.createElement("a");
-    title.className = "title";
-    title.innerText = data.title;
-    title.setAttribute("href", data.url);
-    title.setAttribute("target", "_blank");
+    // var title = document.createElement("a");
+    // title.className = "title";
+    // title.innerHTML = data.title;
+    // title.setAttribute("href", data.url);
+    // title.setAttribute("target", "_blank");
     
     // var time = document.createElement("time");
     // var formattedDate = data.date.replace(/\//g,"-");
     // time.innerHTML = formattedDate;
     // time.setAttribute("datetime", formattedDate);
     
-    // article.appendChild(svg);
-    article.appendChild(title);
+    // article.appendChild(title);
     // article.appendChild(time);
     
     // var numComments = data.commentcount;
@@ -73,12 +54,21 @@ var fetchArticles = rootRef.child("articles").orderByChild("millisInverse").on("
     //     article.appendChild(nocomments);
     // }
     
-    var container = document.getElementById("content");
-    content.appendChild(article);
+    // var content = document.getElementById("content");
+    // content.appendChild(article);
     
+
+}).then(function() {
+    console.log('something here');
+    var content = document.getElementById("content");
+    var h2 = document.getElementsByTagName("h2");
+    content.removeChild(h2[0]);
 });
 
-// rootRef.off("child_added");
+
+rootRef.off("child_added", function() {
+    console.log('off')
+});
 
 },{"firebase":2}],2:[function(require,module,exports){
 /*! @license Firebase v2.4.1
