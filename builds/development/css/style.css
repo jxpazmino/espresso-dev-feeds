@@ -443,11 +443,21 @@ header, article {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
+h2 {
+  color: white;
+  margin-top: 70px;
+  text-align: center;
+}
+
 header {
   background-color: #171714;
   color: #F8F8F2;
   height: 50px;
   line-height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 header button {
@@ -470,14 +480,14 @@ header #updatetime {
   overflow: hidden;
 }
 
-header .logo {
-  color: #66D9EF;
+header #logo {
+  color: #A6E22E;
   font-size: 1.84rem;
   margin: 0 20px;
   line-height: 50px;
 }
 
-header .logo em {
+header #logo em {
   color: #F92672;
 }
 
@@ -504,6 +514,7 @@ article svg {
   display: inline-block;
   position: absolute;
   top: 0;
+  background-color: white;
 }
 
 @media (min-width: 0px) {
@@ -519,7 +530,6 @@ article svg {
 }
 
 article .title {
-  text-decoration: none;
   color: #F8F8F2;
   display: inline-block;
   vertical-align: middle;
@@ -535,6 +545,7 @@ article .title {
     margin-bottom: 1px;
     max-width: calc(100% - 100px);
     padding-left: 4px;
+    min-width: 200px;
   }
 }
 
@@ -548,7 +559,8 @@ article .title {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: calc(100% - 320px);
-    padding-left: 16px;
+    padding-left: 20px;
+    min-width: 0;
   }
 }
 
@@ -615,6 +627,15 @@ article .comments:after {
     line-height: 54px;
     margin-top: 2px;
   }
+}
+
+article > a:visited {
+  color: #75715E;
+  text-decoration: line-through;
+}
+
+article > a:link {
+  text-decoration: none;
 }
 
 article:last-child {

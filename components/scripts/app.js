@@ -12,7 +12,7 @@ rootRef.child("settings").once("value", function(snapshot) {
 });
 
 //all
-rootRef.child("articles").on("value").then(function(snapshot) {
+rootRef.child("articles").once("value").then(function(snapshot) {
     var snapshotArray = [];
     snapshot.forEach(function(snap) {
         snapshotArray.push(snap.val());
@@ -66,7 +66,8 @@ rootRef.child("articles").on("value").then(function(snapshot) {
     }
 
 }).then(function() {
-    var content = document.getElementById("content");
-    var h2 = document.getElementsByTagName("h2");
-    content.removeChild(h2[0]);
+    // var h2 = document.getElementsByTagName("h2");
+    // document.body.removeChild(h2[0]);
 });
+
+
