@@ -11,7 +11,7 @@ rootRef.child("settings").once("value", function(snapshot) {
     updateField.innerHTML = formattedDate.slice(4, 10) + " @ " + formattedTime.slice(0, 5);
 });
 
-
+//all
 rootRef.child("articles").on("value").then(function(snapshot) {
     var snapshotArray = [];
     snapshot.forEach(function(snap) {
