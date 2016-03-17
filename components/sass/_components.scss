@@ -43,6 +43,7 @@ h2 {
 }
 
 header {
+    z-index: 10;
     background-color: $color-header;
     color: $off-white;
     height: $header-height;
@@ -88,7 +89,12 @@ header {
     }
 }
 
+section {
+    margin-top: $header-height + 25px;
+}
+
 article {
+    z-index: 1;
     width: 100%;
     margin-top: 25px;
     position: relative;

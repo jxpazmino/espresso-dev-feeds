@@ -450,6 +450,7 @@ h2 {
 }
 
 header {
+  z-index: 10;
   background-color: #171714;
   color: #F8F8F2;
   height: 50px;
@@ -491,7 +492,12 @@ header #logo em {
   color: #F92672;
 }
 
+section {
+  margin-top: 75px;
+}
+
 article {
+  z-index: 1;
   width: 100%;
   margin-top: 25px;
   position: relative;
