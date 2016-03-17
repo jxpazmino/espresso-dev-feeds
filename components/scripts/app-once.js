@@ -12,7 +12,7 @@ rootRef.child("settings").once("value", function(snapshot) {
 });
 
 
-rootRef.child("articles").on("value").then(function(snapshot) {
+rootRef.child("articles").once("value").then(function(snapshot) {
     var snapshotArray = [];
     snapshot.forEach(function(snap) {
         snapshotArray.push(snap.val());
