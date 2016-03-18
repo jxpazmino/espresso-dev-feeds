@@ -499,9 +499,8 @@ label:before {
   content: "≡";
 }
 
-.container {
+section {
   margin-top: 85px;
-  background-color: blue;
 }
 
 article {
