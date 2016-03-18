@@ -13,20 +13,9 @@
   color: blue;
 }
 
-%update-text {
-    font-style: italic;
-    color: $color-time;
-    white-space: nowrap;
-}
-
 //short shadow
 %box-shadow-1 {
     box-shadow: 0 1px 3px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.24);
-}
-
-//larger shadow
-%box-shadow-2 {
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 %truncate {
@@ -35,36 +24,39 @@
   text-overflow: ellipsis;
 }
 
+.noscript {
+	background-color: $pink;
+	color: $off-white;
+	text-align: center;
+	padding: 4px;
+	font-weight: bold;
+	font-size: 1.2em;
+    margin-top: $header-height;
+    @extend %box-shadow-1;
+}
+
 h2 {
     color:white;
     margin-top: $header-height + 20px;
     text-align: center;
-    
 }
 
 header {
     z-index: 10;
-    background-color: $color-header;
+    background-color: transparentize($color-header, .07);
     color: $off-white;
     height: $header-height;
     line-height: $header-height;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     @extend %box-shadow-1;
     
-    button {
-        float: right;
-        @extend %btn;
-    }
-    
-    #slash {
-       @extend %update-text; 
-    }
-    
-    #lastupdate {
-        @extend %update-text;
+    #updatetime {
+        font-style: italic;
+        // font-size: 1.1rem;
+        color: $color-time;
         @include mobile {
             display: none;
         }
@@ -73,19 +65,33 @@ header {
         }
     }
     
-    #updatetime {
-        @extend %update-text;
-        overflow: hidden;
-    }
-    
     #logo {
         color: $color-logo;
         font-size: 1.84rem;
-        margin: 0 20px;
+        margin: 0 25px;
         line-height: $header-height;
-        em {
+        strong {
             color: $color-dot;
         }
+    }
+    
+}
+
+label {
+    padding: 0;
+    z-index: 1000;
+    position: fixed;
+    text-align: right;
+    right: 25px;
+    top: 18px;
+    margin: 0;
+    font-size: 3.1rem;
+    cursor: pointer;
+    font-weight: bold;
+    color: $off-white;
+    line-height: 20px;
+    &:before {
+        content: "≡";
     }
 }
 

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -419,81 +420,87 @@ body {
   max-width: 94%;
 }
 
-header button {
-  border: none;
-  border-radius: 2px;
-  display: inline-block;
-  height: 30px;
-  line-height: 1.4;
-  outline: 0;
-  padding: 0 2rem;
-  text-transform: uppercase;
-  vertical-align: middle;
-  -webkit-tap-highlight-color: transparent;
-  color: blue;
-}
-
-header #slash, header #lastupdate, header #updatetime {
-  font-style: italic;
-  color: #75715E;
-  white-space: nowrap;
-}
-
-header, article {
+.noscript, header, article {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.noscript {
+  background-color: #F92672;
+  color: #F8F8F2;
+  text-align: center;
+  padding: 4px;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 60px;
 }
 
 h2 {
   color: white;
-  margin-top: 70px;
+  margin-top: 80px;
   text-align: center;
 }
 
 header {
   z-index: 10;
-  background-color: #171714;
+  background-color: rgba(23, 23, 20, 0.93);
   color: #F8F8F2;
-  height: 50px;
-  line-height: 50px;
+  height: 60px;
+  line-height: 60px;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
 }
 
-header button {
-  float: right;
+header #updatetime {
+  font-style: italic;
+  color: #75715E;
 }
 
 @media (min-width: 0px) {
-  header #lastupdate {
+  header #updatetime {
     display: none;
   }
 }
 
 @media (min-width: 760px) {
-  header #lastupdate {
+  header #updatetime {
     display: inline-block;
   }
-}
-
-header #updatetime {
-  overflow: hidden;
 }
 
 header #logo {
   color: #A6E22E;
   font-size: 1.84rem;
-  margin: 0 20px;
-  line-height: 50px;
+  margin: 0 25px;
+  line-height: 60px;
 }
 
-header #logo em {
+header #logo strong {
   color: #F92672;
 }
 
+label {
+  padding: 0;
+  z-index: 1000;
+  position: fixed;
+  text-align: right;
+  right: 25px;
+  top: 18px;
+  margin: 0;
+  font-size: 3.1rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: #F8F8F2;
+  line-height: 20px;
+}
+
+label:before {
+  content: "≡";
+}
+
 section {
-  margin-top: 75px;
+  margin-top: 85px;
 }
 
 article {

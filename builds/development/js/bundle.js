@@ -1,24 +1,22 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-// bysite
+// sidemenu
 (function() {
-
-
-    var Firebase = require('firebase');
-
-    var rootRef = new Firebase('https://scrap-dev-news.firebaseio.com/');
+    console.log("~[ o_0 ]~");
+    var millisNow = new Date().getTime();
+    var Firebase = require('firebase'),
+        rootRef = new Firebase('https://scrap-dev-news.firebaseio.com/');
 
     function displayLastUpdateDate(snapshot) {
-        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        var date = new Date(snapshot.val().lastupdate);
-        var formattedDate = date.toDateString();
-        var formattedTime = date.toTimeString();
-        var updateField = document.getElementById("updatetime");
-        updateField.innerHTML = formattedDate.slice(4, 10) + " @ " + formattedTime.slice(0, 5);
+        var date = new Date(snapshot.val().lastupdate),
+            formattedDate = date.toDateString(),
+            formattedTime = date.toTimeString(),
+            updateField = document.getElementById("updatetime");
+        updateField.innerHTML = "// Updated: " + formattedDate.slice(0, 10) + " @ " + formattedTime.slice(0, 5);
     }
 
-    function removeLoadingMessage() {
+    function toggleLoadingMsg() {
         var h2 = document.getElementsByTagName("h2");
-        document.body.removeChild(h2[0]);
+        h2[0].style.display === "none" ? h2[0].style.display = "block" : h2[0].style.display = "none";
     }
 
     function reverseSnapshot(snapshot) {
@@ -35,6 +33,31 @@
         else return 0;
     }
 
+    function getTimeAgo(millisArticle) {
+        var millisDif = Math.abs(millisNow - millisArticle);
+        var minutes = Math.floor(millisDif / 1000 / 60);
+        var hours = Math.floor(minutes / 60);
+        var days = Math.floor(hours / 24);
+        var months = Math.floor(days / 30);
+        var years = Math.floor(months / 12);
+
+        var timeAgo;
+        if (years > 0) {
+            timeAgo = (years === 1) ? "a year ago" : years + " years ago";
+        } else if (months > 0) {
+            timeAgo = (months === 1) ? "a month ago" : months + " months ago";
+        } else if (days > 0) {
+            timeAgo = (days === 1) ? "a day ago" : days + " days ago";
+        } else if (hours > 0) {
+            timeAgo = (hours === 1) ? "an hour ago" : hours + " hours ago";
+        } else if (minutes > 0) {
+            timeAgo = (minutes === 1) ? "a minute ago" : minutes + " minutes ago";
+        } else {
+            timeAgo = "now";
+        }
+        return timeAgo;
+    }
+
     function fetchAll(snapshot) {
         var dataArray = reverseSnapshot(snapshot);
 
@@ -46,32 +69,33 @@
                 articles.push(site[article]);
             }
         }
-        
+
         articles.sort(compare); // most recent data shows first
-        
+
         for (var key in articles) {
             if (articles.hasOwnProperty(key)) {
-                var articleData = articles[key];
-                var siteTag = articleData.tag;
+                var articleData = articles[key],
+                    siteTag = articleData.tag,
+                    numComments = articleData.commentcount,
+                    articleMillis = articleData.millis,
+                    content = document.getElementById("content"),
+                    article = document.createElement("article"),
+                    title = document.createElement("a"),
+                    time = document.createElement("time");
 
-                var article = document.createElement("article");
                 article.innerHTML = '<svg class="left" width="54" height="54" viewbox="0 0 200 200"><use xlink:href="#sym-' + siteTag + '"></use></svg>';
 
-                var title = document.createElement("a");
                 title.className = "title";
                 title.innerHTML = articleData.title;
                 title.setAttribute("href", articleData.url);
                 title.setAttribute("target", "_blank");
 
-                var time = document.createElement("time");
-                var formattedDate = articleData.date.replace(/\//g, "-");
-                time.innerHTML = formattedDate;
-                time.setAttribute("datetime", formattedDate);
+                time.innerHTML = getTimeAgo(articleMillis);
+                time.setAttribute("datetime", articleMillis);
 
                 article.appendChild(title);
                 article.appendChild(time);
 
-                var numComments = articleData.commentcount;
                 if (numComments !== void 1) {
                     var comments = document.createElement("a");
                     if (numComments === 1) {
@@ -90,17 +114,18 @@
                     article.appendChild(nocomments);
                 }
 
-                var content = document.getElementById("content");
                 content.appendChild(article);
-            }
-        }
+            } //if
+        } //for
+    } //fetchAll
 
 
-    }
-
-    rootRef.child("settings").once("value", displayLastUpdateDate);
-    rootRef.child("sites").once("value").then(fetchAll).then(removeLoadingMessage);
-
+    rootRef.child("sites").once("value")
+        .then(fetchAll)
+        .then(function() {
+            rootRef.child("settings").once("value", displayLastUpdateDate);
+            toggleLoadingMsg();
+        });
 
 })();
 },{"firebase":2}],2:[function(require,module,exports){

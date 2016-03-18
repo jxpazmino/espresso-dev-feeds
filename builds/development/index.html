@@ -11,7 +11,12 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>   
+<body>
+    <noscript>
+		<div class="noscript">
+			Unfortunately our gears can't turn if JavaScript is disabled :(
+		</div>
+	</noscript>
     <svg style="display:none">
         <symbol id="sym-svp">
             <path fill="#FACC00" d="M0,0v200h200V0H0z M99.342,157.363c-12.58,0-25.159-4.588-35.667-16.131l18.943-13.912
@@ -102,16 +107,12 @@
 	L154.098,140.629z"/>
         </symbol>
     </svg>
-    
 
     <header>
-        <span id="logo">feed<em>.</em>log</span>
-        <span id="slash">//</span>
-        <span id="lastupdate">Last update : </span>
+        <span id="logo">console<strong>.</strong>feed</span>
         <span id="updatetime"></span>
-        <button>Menu</button>
     </header>
-    
+    <label for="toggle"></label>
     <h2>Loading ...</h2>
     <section>
         <div id="content"></div>
