@@ -34,9 +34,9 @@
     <svg style="display:none">
         <symbol id="sym-mur">
             <g>
-	<path fill="#B61924" d="M97.789,65.902H83.877v49.727h9.472c18.204,0,28.12-8.881,28.12-25.308
+	<path fill="#F92672" d="M97.789,65.902H83.877v49.727h9.472c18.204,0,28.12-8.881,28.12-25.308
 		C121.469,76.854,113.477,65.902,97.789,65.902z"/>
-	<path fill="#B61924" d="M0,0v200h200V0H0z M143.963,155.439h-30.486l-18.055-19.092H83.877v19.092H60.938V45.183h38.331
+	<path fill="#F92672" d="M0,0v200h200V0H0z M143.963,155.439h-30.486l-18.055-19.092H83.877v19.092H60.938V45.183h38.331
 		C125.168,45.183,145,64.57,145,88.545c0,19.832-9.473,34.335-24.863,41.439L143.963,155.439z"/>
 </g>
         </symbol>
@@ -68,7 +68,7 @@
     </svg>
     <svg style="display:none">
         <symbol id="sym-lob">
-            <path fill="#F92672" d="M0,0v200h200V0H0z M138.192,155.439H70.855V45.183h22.939v89.536h44.398V155.439z"/>
+            <path fill="#B61924" d="M0,0v200h200V0H0z M138.192,155.439H70.855V45.183h22.939v89.536h44.398V155.439z"/>
         </symbol>
     </svg>
     <!--reddit-->
@@ -106,65 +106,72 @@
 	L154.098,140.629z"/>
         </symbol>
     </svg>
+    <svg style="display:none">
+        <symbol id="sym-rall" fill="red">
+            <path fill="#66D9EF" d="M0,0v200h200V0H0z M76.508,168.562H56.825l68.818-134.379h18.646L76.508,168.562z"/>
+        </symbol>
+    </svg>
 
     <header>
         <a href="javascript:window.location.reload(true);" id="logo">console<strong>.</strong>feed</a>
         <span id="updatetime"></span>
     </header>
     <h2>Loading ...</h2>
-    <label for="toggle">Menu</label>
+    <label for="toggle">
+        <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve' fill='#F8F8F2'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>
+    </label>
     <input type="checkbox" id="toggle" />
     <section>
         <div id="content"></div>
         <nav>
             <ul>
-                <li>
-                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
+                <li id="badge-hacker">
+                    <svg width="100" height="100" viewbox="0 0 200 200">
                         <use xlink:href="#sym-hac"></use>
                     </svg>
                     <h3>Hacker News</h3>
                 </li>
-                <li>
-                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
-                        <use xlink:href="#sym-ala"></use>
+                <li id="badge-reddit">
+                    <svg width="100" height="100" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-rall"></use>
                     </svg>
-                    <h3>A List Apart</h3>
+                    <h3>Reddit</h3>
                 </li>
-                <li>
-                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
-                        <use xlink:href="#sym-six"></use>
-                    </svg>
-                    <h3>Six Revisions</h3>
-                </li>
-                <li>
-                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
-                        <use xlink:href="#sym-svp"></use>
-                    </svg>
-                    <h3>ShiftedUp.com</h3>
-                </li>
-                <li>
-                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
+                <li id="badge-lobsters">
+                    <svg width="100" height="100" viewbox="0 0 200 200">
                         <use xlink:href="#sym-lob"></use>
                     </svg>
                     <h3>Lobsters</h3>
                 </li>
-                <li>
-                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
+                <li id="badge-madhatted">
+                    <svg width="100" height="100" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-mad"></use>
+                        <h3>Mad Hatted</h3>
+                    </svg>
+                </li>
+                <li id="badge-rmurphey">
+                    <svg width="100" height="100" viewbox="0 0 200 200">
                         <use xlink:href="#sym-mur"></use>
                     </svg>
-                    <h3>Rebecca Murphey</h3>
+                    <h3>R Murphey</h3>
                 </li>
-                <li>
-                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
-                        <use xlink:href="#sym-mad"></use>
+                <li id="badge-shifted">
+                    <svg width="100" height="100" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-svp"></use>
                     </svg>
-                    <h3>Mad Hatted</h3>
+                    <h3>Shifted Up</h3>
                 </li>
-                <li>
-                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
-                        <use xlink:href="#sym-rwd"></use>
+                <li id="badge-alist">
+                    <svg width="100" height="100" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-ala"></use>
                     </svg>
-                    <h3>r/webdev</h3>
+                    <h3>A List Apart</h3>
+                </li>
+                <li id="badge-sixr">
+                    <svg width="100" height="100" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-six"></use>
+                    </svg>
+                    <h3>Six Revisions</h3>
                 </li>
             </ul>
         </nav>

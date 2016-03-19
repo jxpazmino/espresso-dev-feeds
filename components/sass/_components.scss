@@ -1,9 +1,15 @@
+* {
+    transition: margin 160ms linear;
+    -webkit-tap-highlight-color: transparent;
+}
+
 html {
     font-size: 16px;
     line-height: 1.5;
     font-weight: 400;
     color: $color-main;
     font-family: $font-main;
+    background-color: $color-background;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
         -ms-text-size-adjust: 100%;
@@ -73,20 +79,17 @@ header {
 
 label {
     padding: 0;
-    z-index: 101;
+    z-index: 201;
     position: fixed;
     text-align: right;
-    right: 25px;
-    top: 18px;
+    right: 32px;
+    top: 15px;
     margin: 0;
-    font-size: 3.1rem;
     cursor: pointer;
     font-weight: bold;
-    color: $off-white;
-    line-height: 20px;
-    // &:before {
-    //     content: "Menu";
-    // }
+    width: 30px;
+    height: 30px;
+    background-size: contain;
 }
 
 article {
@@ -232,36 +235,78 @@ nav {
     width: $sidebar-width;
     z-index: 8;
     color: $darker;
+    overflow: hidden;
     
     ul {
-        padding: 0;
-        margin: ($header-height + 15px) 30px 25px;
-        list-style-type: none;
+        @include mobile {
+            padding: 0;
+            list-style-type: none;
+            margin: ($header-height + 18px) 8px 0;
+        }
+        
+        @include tablet {
+            margin: ($header-height + 14px) 20px 0;
+        }   
+        
+        
         li {
-            display: table;
-            margin-bottom: 0px;
-            cursor: pointer;
-            border: 2px solid $off-white;
-            
-            &:hover {
-                @extend %box-shadow-1;
+            @include mobile {
+                position: relative;
+                margin: 15px 7px 7px;
+                display: inline-block;
+                cursor: pointer;
+                padding: 0;
+                height: 75px;
+                width: 75px;
+                svg {
+                    @extend absolute_left;
+                    display: inline-block;
+                    // width: 68px;
+                    // height: auto;
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                    border: solid 2px $off-white;
+                    background-color: $dark;
+                    @extend %box-shadow-2;
+                    background-clip: content-box;
+                    box-sizing: content-box;
+                }
+                h3 {
+                    @extend absolute_left;
+                    margin: 0;
+                    margin-left: 2px;
+                    display: block;
+                    font-weight: normal;
+                    font-size: 13px;
+                    line-height: 14px;
+                    text-align: center;
+                    height: 19px;
+                    width: 100%;
+                    color: white;
+                    white-space: nowrap;
+                }
             }
-            
-            svg {
-                border-right: 2px solid $grey;
-                display: table-cell;
-            }
-            h3 {
-                display: table-cell;
-                font-size: 1.1rem;
-                padding-left: 10px;
-                padding-right: 10px;
-                color: $dark;
-                width: 100%;
-                margin-right: 20px;
-                font-weight: 400;
-                overflow: hidden;
-                line-height: 10px;
+            @include tablet {
+                height: 97px;
+                width: 97px;
+                margin: 13px;
+                
+                svg {
+                    border-width: 5px;
+                    // width: 100px;
+                    // height: auto;
+                    &:hover {
+                        @extend %box-shadow-1-hover;
+                    }
+                }
+                
+                h3 {
+                    margin-left: 3px;
+                    font-size: 15px;
+                    line-height: 17px;
+                }
             }
         }
     }
@@ -274,8 +319,4 @@ nav {
             margin-right: $sidebar-width;
         }
     }
-}
-
-* {
-    transition: margin 160ms linear;
 }
