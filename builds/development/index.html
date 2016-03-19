@@ -3,9 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>console.feed</title>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -14,7 +13,7 @@
 <body>
     <noscript>
 		<div class="noscript">
-			Unfortunately our gears can't turn if JavaScript is disabled :(
+			Sorry! we can't get you the goodies if JavaScript is disabled :(
 		</div>
 	</noscript>
     <svg style="display:none">
@@ -101,7 +100,7 @@
         </symbol>
     </svg>
     <svg style="display:none">
-        <symbol id="sym-rwd">
+        <symbol id="sym-rwd" fill="red">
             <path fill="#66D9EF" d="M0,0v200h200V0H0z M12.785,160.129L73.238,42.085h16.38L30.076,160.129H12.785z M154.098,140.629
 	l-14.82-30.941l-14.82,30.941L88.835,73.287h20.411l15.73,31.59l5.98-12.74l-8.84-18.851h17.68l15.08,31.461l13.781-31.461h18.07
 	L154.098,140.629z"/>
@@ -109,13 +108,66 @@
     </svg>
 
     <header>
-        <span id="logo">console<strong>.</strong>feed</span>
+        <a href="javascript:window.location.reload(true);" id="logo">console<strong>.</strong>feed</a>
         <span id="updatetime"></span>
     </header>
-    <label for="toggle"></label>
     <h2>Loading ...</h2>
+    <label for="toggle">Menu</label>
+    <input type="checkbox" id="toggle" />
     <section>
         <div id="content"></div>
+        <nav>
+            <ul>
+                <li>
+                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-hac"></use>
+                    </svg>
+                    <h3>Hacker News</h3>
+                </li>
+                <li>
+                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-ala"></use>
+                    </svg>
+                    <h3>A List Apart</h3>
+                </li>
+                <li>
+                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-six"></use>
+                    </svg>
+                    <h3>Six Revisions</h3>
+                </li>
+                <li>
+                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-svp"></use>
+                    </svg>
+                    <h3>ShiftedUp.com</h3>
+                </li>
+                <li>
+                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-lob"></use>
+                    </svg>
+                    <h3>Lobsters</h3>
+                </li>
+                <li>
+                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-mur"></use>
+                    </svg>
+                    <h3>Rebecca Murphey</h3>
+                </li>
+                <li>
+                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-mad"></use>
+                    </svg>
+                    <h3>Mad Hatted</h3>
+                </li>
+                <li>
+                    <svg class="left" width="40" height="40" viewbox="0 0 200 200">
+                        <use xlink:href="#sym-rwd"></use>
+                    </svg>
+                    <h3>r/webdev</h3>
+                </li>
+            </ul>
+        </nav>
     </section>
 
     <script src="js/bundle.js"></script>

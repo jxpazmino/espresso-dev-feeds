@@ -1,16 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Inconsolata);
 
 // monokai
+$darker:          #121212;
 $dark:            #272822;
-$darker:          #171714;
-$green:           #A6E22E;
-$grey:            #75715E;
-$light-blue:      #66D9EF;
+$grey:            #818179;
+$light-grey:      #ececec;
 $off-white:       #F8F8F2;
+$yellow:          #E6DB74;
 $orange:          #FD971F;
 $pink:            #F92672;
 $purple:          #AE81FF;
-$yellow:          #E6DB74;
+$light-blue:      #66D9EF;
+$green:           #A6E22E;
 
 $color-background:  $dark;
 $color-header:      $darker;
@@ -20,6 +21,8 @@ $color-comments:    $yellow;
 $color-logo:        $green;
 $color-dot:         $pink;
 $color-time:        $grey;
+$color-content:     $dark;
+$color-nav:         $dark;
 
 $screen-small:      0px;
 $screen-medium:     760px;
@@ -29,5 +32,6 @@ $logo-size-big:     54px;
 $logo-size-small:   44px;
 
 $header-height:     60px;
+$sidebar-width:     300px;
 
 $font-main: "Inconsolata", "Courier New", "Lucida Console", monospace, sans-serif;

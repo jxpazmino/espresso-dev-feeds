@@ -1,6 +1,5 @@
 // sidemenu1
 (function() {
-    console.log("~[ o_0 ]~");
     var millisNow = new Date().getTime();
     var Firebase = require('firebase'),
         rootRef = new Firebase('https://scrap-dev-news.firebaseio.com/');
@@ -82,7 +81,7 @@
                     title = document.createElement("a"),
                     time = document.createElement("time");
 
-                article.innerHTML = '<svg class="left" width="54" height="54" viewbox="0 0 200 200"><use xlink:href="#sym-' + siteTag + '"></use></svg>';
+                article.innerHTML = '<svg class="left" width="54" height="54" viewbox="0 0 200 200" style="fill:blue"><use xlink:href="#sym-' + siteTag + '" style="fill:blue"></use></svg>';
 
                 title.className = "title";
                 title.innerHTML = articleData.title;
@@ -125,5 +124,34 @@
             rootRef.child("settings").once("value", displayLastUpdateDate);
             toggleLoadingMsg();
         });
-
+    
+    
+    // window.addEventListener("keydown", function(e){
+    //     if(e.which == 77 || e.keyCode == 77) {
+    //         e.preventDefault();
+    //         var checkbox = document.getElementById("toggle");
+    //         var checked = checkbox.getAttribute("checked");
+    //         console.log(checked);
+    //         if(checked==="checked") {
+    //             checkbox.removeAttribute("checked");
+    //         } else {
+    //             checkbox.setAttribute("checked", "checked");
+    //         }
+    //     }
+    // });
+    
+    // var menu = document.getElementsByTagName("label");
+    // menu[0].addEventListener("click", function() {
+    //     var checkbox = document.getElementById("toggle");
+    //     var checked = checkbox.getAttribute("checked");
+    //     console.log(checked);
+    //     if(checked==="checked") {
+    //         checkbox.removeAttribute("checked");
+    //     } else {
+    //         checkbox.setAttribute("checked", "checked");
+    //     }
+    // });
 })();
+
+
+

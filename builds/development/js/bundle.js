@@ -1,7 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-// sidemenu
+// sidemenu1
 (function() {
-    console.log("~[ o_0 ]~");
     var millisNow = new Date().getTime();
     var Firebase = require('firebase'),
         rootRef = new Firebase('https://scrap-dev-news.firebaseio.com/');
@@ -83,7 +82,7 @@
                     title = document.createElement("a"),
                     time = document.createElement("time");
 
-                article.innerHTML = '<svg class="left" width="54" height="54" viewbox="0 0 200 200"><use xlink:href="#sym-' + siteTag + '"></use></svg>';
+                article.innerHTML = '<svg class="left" width="54" height="54" viewbox="0 0 200 200" style="fill:blue"><use xlink:href="#sym-' + siteTag + '" style="fill:blue"></use></svg>';
 
                 title.className = "title";
                 title.innerHTML = articleData.title;
@@ -126,8 +125,38 @@
             rootRef.child("settings").once("value", displayLastUpdateDate);
             toggleLoadingMsg();
         });
-
+    
+    
+    // window.addEventListener("keydown", function(e){
+    //     if(e.which == 77 || e.keyCode == 77) {
+    //         e.preventDefault();
+    //         var checkbox = document.getElementById("toggle");
+    //         var checked = checkbox.getAttribute("checked");
+    //         console.log(checked);
+    //         if(checked==="checked") {
+    //             checkbox.removeAttribute("checked");
+    //         } else {
+    //             checkbox.setAttribute("checked", "checked");
+    //         }
+    //     }
+    // });
+    
+    // var menu = document.getElementsByTagName("label");
+    // menu[0].addEventListener("click", function() {
+    //     var checkbox = document.getElementById("toggle");
+    //     var checked = checkbox.getAttribute("checked");
+    //     console.log(checked);
+    //     if(checked==="checked") {
+    //         checkbox.removeAttribute("checked");
+    //     } else {
+    //         checkbox.setAttribute("checked", "checked");
+    //     }
+    // });
 })();
+
+
+
+
 },{"firebase":2}],2:[function(require,module,exports){
 /*! @license Firebase v2.4.1
     License: https://www.firebase.com/terms/terms-of-service.html */
