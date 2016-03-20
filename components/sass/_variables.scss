@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Inconsolata);
+@import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Passion+One);
 
 // monokai
 $darker:          #121212;
@@ -14,19 +15,18 @@ $light-blue:      #66D9EF;
 $green:           #A6E22E;
 
 $color-background:  $grey;
-$color-header:      $darker;
+$color-header:      $off-white;
 $color-main:        $off-white;
 $color-headlines:   $off-white;
-$color-comments:    $yellow;
-$color-logo:        $green;
+$color-comments:    $off-white;
+$color-logo:        $darker;
 $color-dot:         $pink;
 $color-time:        $grey;
 $color-content:     $dark;
 $color-nav:         $grey;
 
 $screen-small:      0px;
-$screen-medium:     760px;
-$screen-large:      1200px;
+$screen-large:      900px;
 
 $logo-size-big:     54px;
 $logo-size-small:   44px;
@@ -34,4 +34,5 @@ $logo-size-small:   44px;
 $header-height:     60px;
 $sidebar-width:     300px;
 
-$font-main: "Inconsolata", "Courier New", "Lucida Console", monospace, sans-serif;
+$font-main: "Lato", "Tahoma", sans-serif;
+$font-logo: "Passion One", "Impact", sans-serif;

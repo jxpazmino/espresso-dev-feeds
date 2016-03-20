@@ -1,9 +1,6 @@
 // sidemenu1
 (function() {
-    var millisNow = new Date().getTime();
-    var Firebase = require('firebase'),
-        rootRef = new Firebase('https://scrap-dev-news.firebaseio.com/');
-
+    var allArticlesLoadedAndSorted;
     function displayLastUpdateDate(snapshot) {
         var date = new Date(snapshot.val().lastupdate),
             formattedDate = date.toDateString(),
@@ -12,9 +9,24 @@
         updateField.innerHTML = "// Updated: " + formattedDate.slice(0, 10) + " @ " + formattedTime.slice(0, 5);
     }
 
-    function toggleLoadingMsg() {
-        var h2 = document.getElementsByTagName("h2");
-        h2[0].style.display === "none" ? h2[0].style.display = "block" : h2[0].style.display = "none";
+    function showLoadingMsg(el) {
+        var h2 = el || document.getElementsByTagName("h2");
+        h2[0].style.display = "inline-block";
+    }
+
+    function hideLoadingMsg(el) {
+        var h2 = el || document.getElementsByTagName("h2");
+        h2[0].style.display = "none";
+    }
+
+    function toggleSideNav() {
+        var checkbox = document.getElementById("toggle");
+        var checked = checkbox.getAttribute("checked");
+        if (checked === "checked") {
+            return checkbox.removeAttribute("checked");
+        } else {
+            return checkbox.setAttribute("checked", "checked");
+        }
     }
 
     function reverseSnapshot(snapshot) {
@@ -32,14 +44,14 @@
     }
 
     function getTimeAgo(millisArticle) {
-        var millisDif = Math.abs(millisNow - millisArticle);
-        var minutes = Math.floor(millisDif / 1000 / 60);
-        var hours = Math.floor(minutes / 60);
-        var days = Math.floor(hours / 24);
-        var months = Math.floor(days / 30);
-        var years = Math.floor(months / 12);
+        var millisDif = Math.abs(millisNow - millisArticle),
+            minutes = Math.floor(millisDif / 1000 / 60),
+            hours = Math.floor(minutes / 60),
+            days = Math.floor(hours / 24),
+            months = Math.floor(days / 30),
+            years = Math.floor(months / 12),
+            timeAgo;
 
-        var timeAgo;
         if (years > 0) {
             timeAgo = (years === 1) ? "a year ago" : years + " years ago";
         } else if (months > 0) {
@@ -56,20 +68,7 @@
         return timeAgo;
     }
 
-    function fetchAll(snapshot) {
-        var dataArray = reverseSnapshot(snapshot);
-
-        var articles = [];
-
-        for (var i = 0, len = dataArray.length; i < len; i++) {
-            var site = dataArray[i];
-            for (var article in site) {
-                articles.push(site[article]);
-            }
-        }
-
-        articles.sort(compare); // most recent data shows first
-
+    function postContent(articles) {
         for (var key in articles) {
             if (articles.hasOwnProperty(key)) {
                 var articleData = articles[key],
@@ -113,45 +112,92 @@
                 }
 
                 content.appendChild(article);
-            } //if
+            } //if hasOwnProperty
         } //for
-    } //fetchAll
+    }
 
+    function fetchSite(id) {
+        var articles = [], key;
+        if(id==='reddit') {
+            for(key in allArticlesLoadedAndSorted) {
+                if(allArticlesLoadedAndSorted[key].tag.charAt(0)==='r') {
+                    articles.push(allArticlesLoadedAndSorted[key]);
+                }
+            }
+        } else if (id==='all') {
+            articles = allArticlesLoadedAndSorted;
+        } else {
+            for(key in allArticlesLoadedAndSorted) {
+                if(allArticlesLoadedAndSorted[key].tag===id) {
+                    articles.push(allArticlesLoadedAndSorted[key]);
+                }
+            }
+        }
+        postContent(articles);
+    }
 
-    rootRef.child("sites").once("value")
-        .then(fetchAll)
+    function fetchAllSites(snapshot) {
+        var dataArray = snapshot.val();
+        var articles = [];
+        for(var tag in dataArray) {
+            var site = dataArray[tag];
+            for (var article in site) {
+                articles.push(site[article]);
+            }
+        }
+        allArticlesLoadedAndSorted = articles.sort(compare); // most recent data shows first
+        postContent(articles);
+    }
+    
+    function loadAllContent() {
+        rootRef.child("sites").once("value")
+        .then(fetchAllSites)
         .then(function() {
             rootRef.child("settings").once("value", displayLastUpdateDate);
-            toggleLoadingMsg();
+            hideLoadingMsg();
         });
-    
-    
-    // window.addEventListener("keydown", function(e){
-    //     if(e.which == 77 || e.keyCode == 77) {
-    //         e.preventDefault();
-    //         var checkbox = document.getElementById("toggle");
-    //         var checked = checkbox.getAttribute("checked");
-    //         console.log(checked);
-    //         if(checked==="checked") {
-    //             checkbox.removeAttribute("checked");
-    //         } else {
-    //             checkbox.setAttribute("checked", "checked");
-    //         }
-    //     }
-    // });
-    
-    // var menu = document.getElementsByTagName("label");
-    // menu[0].addEventListener("click", function() {
-    //     var checkbox = document.getElementById("toggle");
-    //     var checked = checkbox.getAttribute("checked");
-    //     console.log(checked);
-    //     if(checked==="checked") {
-    //         checkbox.removeAttribute("checked");
-    //     } else {
-    //         checkbox.setAttribute("checked", "checked");
-    //     }
-    // });
+    }
+
+    var millisNow = new Date().getTime(),
+        Firebase = require('firebase'),
+        rootRef = new Firebase('https://scrap-dev-news.firebaseio.com/'),
+        menu = document.getElementsByTagName("label"),
+        li = document.getElementsByTagName("li");
+
+
+    menu[0].addEventListener("click", function() {
+        var checkbox = document.getElementById("toggle");
+        var checked = checkbox.getAttribute("checked");
+        if (checked === "checked") {
+            checkbox.removeAttribute("checked");
+        } else {
+            checkbox.setAttribute("checked", "checked");
+        }
+    });
+
+    for (var i = 0, len = li.length; i < len; i++) {
+        li[i].addEventListener("click", function() {
+            var id = this.getAttribute("id");
+            toggleSideNav();
+            var content = document.getElementById("content");
+            content.innerHTML = "";
+            fetchSite(id);
+        });
+    }
+
+    window.addEventListener("keydown", function(e) {
+        //space bar toggle sidebar menu
+        if (e.which == 32 || e.keyCode == 32) {
+            e.preventDefault();
+            var checkbox = document.getElementById("toggle");
+            var checked = checkbox.getAttribute("checked");
+            if (checked === "checked") {
+                checkbox.removeAttribute("checked");
+            } else {
+                checkbox.setAttribute("checked", "checked");
+            }
+        }
+    });
+
+    loadAllContent();
 })();
-
-
-
