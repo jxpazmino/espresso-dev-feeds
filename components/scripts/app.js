@@ -145,12 +145,13 @@
             if (a.millis < b.millis) return 1;
             else if (a.millis > b.millis) return -1;
             else return 0;
-        }); // most recent data shows first
+        });
+        // show articles with most engagement first
         allArticlesLoadedAndSorted = articles.sort(function (a, b) {
             if (a.commentcount < b.commentcount) return 1;
             else if (a.commentcount > b.commentcount) return -1;
             else return 0;
-        }); // most recent data shows first
+        });
         postContent(articles);
     }
     
