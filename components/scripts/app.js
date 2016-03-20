@@ -1,4 +1,3 @@
-// sidemenu1
 (function() {
     var allArticlesLoadedAndSorted;
     function displayLastUpdateDate(snapshot) {

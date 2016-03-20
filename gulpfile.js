@@ -1,24 +1,19 @@
 'use strict';
 
 var gulp 		 = require('gulp'),
-    handlebars   = require('gulp-compile-handlebars'),
-    rename       = require('gulp-rename'),
 	uglify 		 = require('gulp-uglify'),
 	gulpif 		 = require('gulp-if'),
-    concat       = require('gulp-concat'),
-	browserify	 = require('browserify'),
+	htmlmin      = require('gulp-htmlmin'),
+    browserify	 = require('browserify'),
     source       = require('vinyl-source-stream'),
     buffer       = require('vinyl-buffer'),
-	htmlmin      = require('gulp-htmlmin'),
 	sass		 = require('gulp-sass'),
-	autoprefixer = require('gulp-autoprefixer'),
+	// autoprefixer = require('gulp-autoprefixer'), // doesnt work with  my setup
     sassStyle,
     env,
     outputDir;
     
-    
 env = process.env.NODE_ENV || 'development';
-env = 'production';
 
 if(env==='development') {
 	outputDir = 'builds/development/';
@@ -45,7 +40,7 @@ gulp.task('sass', function() {
 	.pipe(sass({
 		outputStyle: sassStyle
 	}))
-    // .pipe(autoprefixer('last 2 versions')) // doesnt work for some reason, probably my old version of node
+    // .pipe(autoprefixer('last 2 versions')) // doesnt work with my setup
 	.pipe(gulp.dest(outputDir + 'css'));
 });
 
