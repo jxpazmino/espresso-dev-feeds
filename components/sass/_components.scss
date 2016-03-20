@@ -304,10 +304,6 @@ nav {
                     &:hover {
                         @extend %box-shadow-1-hover;
                     }
-                    
-                    &:last-of-type {
-                        // background-color: $off-white;
-                    }
                 }
                 h3 {
                     @extend absolute_left;
