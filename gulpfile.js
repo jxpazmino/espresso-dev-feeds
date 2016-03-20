@@ -17,8 +17,8 @@ var gulp 		 = require('gulp'),
     outputDir;
     
     
-// env = process.env.NODE_ENV || 'development';
-env = 'production';
+env = process.env.NODE_ENV || 'development';
+// env = 'production';
 
 if(env==='development') {
 	outputDir = 'builds/development/';

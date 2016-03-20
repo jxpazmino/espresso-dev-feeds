@@ -57,20 +57,6 @@ header {
     width: 100vw;
     @extend %box-shadow-1;
     
-    #updatetime {
-        font-size: 0.9rem;
-        font-style: italic;
-        color: $color-time;
-        margin-left: 15px;
-        
-        @include small-screen {
-            display: none;
-        }
-        @include large-screen {
-            display: inline-block;
-        }
-    }
-    
     #logo {
         color: $color-logo;
         font-size: 2.2rem;
@@ -80,6 +66,25 @@ header {
         margin: 0;
         font-family: $font-logo;
         
+        i {
+            font-style: normal;
+            display: none;
+            @media screen and (min-width:380px) {
+                display: inline-block;        
+            }
+        }
+        span {
+            font-size: 0.8rem;
+            font-family: $font-main;
+            font-weight: normal;
+            vertical-align: middle;
+            text-transform: uppercase;
+            display: none;        
+            @media screen and (min-width:380px) {
+                display: inline-block;        
+            }
+        }
+        
         @include small-screen {
             margin-left: 10px;
         }
@@ -87,6 +92,8 @@ header {
         @include large-screen {
             margin-left: 25px;
         }
+        
+        
     }
 }
 

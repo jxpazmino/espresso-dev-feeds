@@ -6,7 +6,7 @@
             formattedDate = date.toDateString(),
             formattedTime = date.toTimeString(),
             updateField = document.getElementById("updatetime");
-        updateField.innerHTML = "// Updated: " + formattedDate.slice(0, 10) + " @ " + formattedTime.slice(0, 5);
+        updateField.innerHTML = "Last Update: " + formattedDate.slice(0, 10) + " @ " + formattedTime.slice(0, 5);
     }
 
     function showLoadingMsg(el) {
@@ -37,11 +37,7 @@
         return snapshotArray.reverse();
     }
 
-    function compare(a, b) {
-        if (a.millis < b.millis) return 1;
-        else if (a.millis > b.millis) return -1;
-        else return 0;
-    }
+    
 
     function getTimeAgo(millisArticle) {
         var millisDif = Math.abs(millisNow - millisArticle),
@@ -145,7 +141,16 @@
                 articles.push(site[article]);
             }
         }
-        allArticlesLoadedAndSorted = articles.sort(compare); // most recent data shows first
+        allArticlesLoadedAndSorted = articles.sort(function (a, b) {
+            if (a.millis < b.millis) return 1;
+            else if (a.millis > b.millis) return -1;
+            else return 0;
+        }); // most recent data shows first
+        allArticlesLoadedAndSorted = articles.sort(function (a, b) {
+            if (a.commentcount < b.commentcount) return 1;
+            else if (a.commentcount > b.commentcount) return -1;
+            else return 0;
+        }); // most recent data shows first
         postContent(articles);
     }
     
