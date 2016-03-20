@@ -3,4 +3,4 @@ node_modules
 .tmp
 .sass-cache
 builds/**/images/*
-builds/production
+builds/production/
