@@ -15,7 +15,7 @@ var gulp 		 = require('gulp'),
     
 env = process.env.NODE_ENV || 'development';
 
-if(env==='development') {
+if(env==='production') {
 	outputDir = 'builds/development/';
 	sassStyle = 'expanded';
 } else {

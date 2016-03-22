@@ -76,7 +76,7 @@
                     title = document.createElement("a"),
                     time = document.createElement("time");
 
-                article.innerHTML = '<svg class="left" width="54" height="54" viewbox="0 0 200 200" style="fill:blue"><use xlink:href="#sym-' + siteTag + '" style="fill:blue"></use></svg>';
+                article.innerHTML = '<svg class="left" width="54" height="54" viewbox="0 0 200 200"><use xlink:href="#sym-' + siteTag + '" preserveAspectRatio="xMinYMin meet"></use></svg>';
 
                 title.className = "title";
                 title.innerHTML = articleData.title;
