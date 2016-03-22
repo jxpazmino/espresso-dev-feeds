@@ -81,7 +81,6 @@
                 title.className = "title";
                 title.innerHTML = articleData.title;
                 title.setAttribute("href", articleData.url);
-                title.setAttribute("target", "_blank");
 
                 time.innerHTML = getTimeAgo(articleMillis);
                 time.setAttribute("datetime", articleMillis);
