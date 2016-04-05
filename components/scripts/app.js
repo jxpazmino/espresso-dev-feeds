@@ -141,16 +141,13 @@
                 articles.push(site[article]);
             }
         }
+        // First we want newest at top, so sort by most recent first
         allArticlesLoadedAndSorted = articles.sort(function (a, b) {
-            if (a.millis < b.millis) return 1;
-            else if (a.millis > b.millis) return -1;
-            else return 0;
+            return Number(b.millis)-Number(a.millis);
         });
-        // show articles with most engagement first
+        // Second we want most engaging, so now sort by number of comments
         allArticlesLoadedAndSorted = articles.sort(function (a, b) {
-            if (a.commentcount < b.commentcount) return 1;
-            else if (a.commentcount > b.commentcount) return -1;
-            else return 0;
+            return Number(b.commentcount) - Number(a.commentcount);
         });
         postContent(articles);
     }
