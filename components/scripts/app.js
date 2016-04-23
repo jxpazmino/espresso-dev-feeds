@@ -26,17 +26,7 @@
         } else {
             return checkbox.setAttribute("checked", "checked");
         }
-    }
-
-    function reverseSnapshot(snapshot) {
-        var snapshotArray = [];
-        snapshot.forEach(function(snap) {
-            snapshotArray.push(snap.val());
-        });
-        return snapshotArray.reverse();
-    }
-
-    
+    }  
 
     function getTimeAgo(millisArticle) {
         var millisDif = Math.abs(millisNow - millisArticle),
@@ -63,7 +53,7 @@
         return timeAgo;
     }
 
-    function postContent(articles) {
+    function postSiteContent(articles) {
         for (var key in articles) {
             if (articles.hasOwnProperty(key)) {
                 var articleData = articles[key],
@@ -113,6 +103,7 @@
     }
 
     function fetchSite(id) {
+		//We either display all subreddits, display all sites, or display individual site
         var articles = [], key;
         if(id==='reddit') {
             for(key in allArticlesLoadedAndSorted) {
@@ -129,7 +120,7 @@
                 }
             }
         }
-        postContent(articles);
+        postSiteContent(articles);
     }
 
     function fetchAllSites(snapshot) {
@@ -149,7 +140,7 @@
         allArticlesLoadedAndSorted = articles.sort(function (a, b) {
             return Number(b.commentcount) - Number(a.commentcount);
         });
-        postContent(articles);
+        postSiteContent(articles);
     }
     
     function loadAllContent() {
@@ -189,7 +180,7 @@
     }
 
     window.addEventListener("keydown", function(e) {
-        //space bar toggle sidebar menu
+        //space bar toggles sidebar menu
         if (e.which == 32 || e.keyCode == 32) {
             e.preventDefault();
             var checkbox = document.getElementById("toggle");
