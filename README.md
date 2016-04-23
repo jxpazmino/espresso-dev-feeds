@@ -1,5 +1,7 @@
 # Espresso | Dev feeds in hot sips
 
+![Main Desktop Screen](https://github.com/jxpazmino/espresso-dev-feeds/blob/master/screenshot.jpg)
+
 Feeds included:
 - Hacker News(http://news.ycombinator.com)
 - Lobsters (http://lobste.rs) 
@@ -10,4 +12,5 @@ Feeds included:
 - A List Apart (http://alistapart.com)
 - Six Revisions (http://sixrevisions.com)
 
-![Main Desktop Screen](https://github.com/jxpazmino/espresso-dev-feeds/blob/master/screenshot.jpg)
+[View Application](http://espresso.jxpazmino.com)
+--------------
