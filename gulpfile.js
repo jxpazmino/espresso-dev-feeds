@@ -8,7 +8,6 @@ var gulp 		 = require('gulp'),
     source       = require('vinyl-source-stream'),
     buffer       = require('vinyl-buffer'),
 	sass		 = require('gulp-sass'),
-	// autoprefixer = require('gulp-autoprefixer'), // doesnt work with  my setup
     sassStyle,
     env,
     outputDir;
@@ -40,7 +39,6 @@ gulp.task('sass', function() {
 	.pipe(sass({
 		outputStyle: sassStyle
 	}))
-    // .pipe(autoprefixer('last 2 versions')) // doesnt work with my setup
 	.pipe(gulp.dest(outputDir + 'css'));
 });
 
